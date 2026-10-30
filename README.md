@@ -45,7 +45,13 @@ Set across the gilded rooftops of Piltover and the toxic neon depths of the Zaun
 - **Non-Linear Polygon Clip-Paths:** ScrollTrigger scrubs polygon coordinates from asymmetrical trapezoids (`polygon(14% 0, 72% 0, 88% 90%, 0 95%)`) to full-screen rectangles (`polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)`).
 - **Organic Liquid SVG Shimmer Filter:** A custom `<svg>` filter (`#flt_tag`) applies procedural Gaussian blurring coupled with high-contrast alpha color matrix thresholds to produce a viscous, liquid meniscus effect around floating story frames.
 
-### 5. Custom RFC 7233 Media Server
+### 5. Dedicated Hextech Arcana Experience (`hextech.html`)
+- **Twin-City Narrative Split:** While `index.html` chronicles Jinx and Vi's fracture in Zaun, `hextech.html` transports the audience into Jayce and Viktor's breakthrough in the Piltover Academy.
+- **Hextech Visual Language:** Replaces the violet Zaun palette with electric Hexcore cyan (`#00F0FF`), Piltover Art Deco Gold (`#F5A623`), and cosmic obsidian (`#050811`).
+- **Kinetic Hexcore Bento Grid:** 5 dedicated video cards showcasing the birth of Hextech, runic containment harmonics, wild rune anomalies, kinetic force barriers, and the Piltover Hexgates.
+- **Synchronized Global Navigation:** The navigation bar seamlessly switches between `/index.html` (Sisters) and `/hextech.html` (Hextech) with active indicator pills.
+
+### 6. Custom RFC 7233 Media Server
 - Includes a purpose-built Node.js media server featuring native **HTTP 206 Partial Content Range Streaming**.
 - Enables instantaneous seeking, random-access byte scrubbing, and zero-buffer video playback across all devices.
 

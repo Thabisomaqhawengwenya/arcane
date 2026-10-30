@@ -99,6 +99,8 @@ const server = http.createServer((req, res) => {
 
   if (pathname === '/') {
     pathname = '/index.html';
+  } else if (!path.extname(pathname) && fs.existsSync(path.join(ROOT_DIR, pathname + '.html'))) {
+    pathname = pathname + '.html';
   }
 
   const localPath = path.join(ROOT_DIR, pathname);
