@@ -254,8 +254,8 @@ if (range) {
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/Thabisomaqhawengwenya/arcane-experience.git
-   cd arcane-experience
+   git clone https://github.com/Thabisomaqhawengwenya/arcane.git
+   cd arcane
    ```
 
 2. **Start the Streaming Server:**
