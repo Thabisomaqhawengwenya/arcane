@@ -1,0 +1,23 @@
+{
+  "name": "arcane",
+  "version": "1.0.0",
+  "description": "Cinematic Arcane interactive web experience reverse-engineered from Zentry",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "serve": "node server.js"
+  },
+  "keywords": [
+    "arcane",
+    "league-of-legends",
+    "jinx",
+    "vi",
+    "zentry",
+    "gsap",
+    "react",
+    "tailwind"
+  ],
+  "author": "Maqhawe T Ngwenya",
+  "license": "MIT"
+}

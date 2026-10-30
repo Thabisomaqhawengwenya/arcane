@@ -244,13 +244,23 @@ if (range) {
 
 ---
 
-## Quick Start
+## Quick Start & Deployment
 
-### Prerequisites
+### 1. Vercel Cloud Deployment (Zero Configuration)
+The repository is fully configured for automated Vercel deployment with zero build steps needed:
+1. Import the repository on [Vercel](https://vercel.com/new).
+2. Leave all settings at default (**Root Directory:** `./`, **Framework Preset:** `Other`).
+3. Click **Deploy**. Vercel will instantly serve the experience globally with edge byte-range video streaming enabled via `vercel.json`.
+
+---
+
+### 2. Running Locally
+
+#### Prerequisites
 - [Node.js](https://nodejs.org/) (version 18 or higher recommended)
 - Modern web browser with WebGL and HTML5 video support (Chrome, Edge, Firefox, Brave, Safari)
 
-### Installation & Launch
+#### Installation & Launch
 
 1. **Clone the Repository:**
    ```bash
@@ -260,7 +270,8 @@ if (range) {
 
 2. **Start the Streaming Server:**
    ```bash
-   node zentry-local/server.js
+   npm start
+   # or: node server.js
    ```
 
 3. **Open the Experience:**
