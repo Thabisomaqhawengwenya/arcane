@@ -21,7 +21,7 @@
 
 **Arcane: Divided Twin Cities** transforms the multi-award-winning kinetic layout of Zentry into a dark, immersive storytelling vessel exploring the tragic fracture between sisters **Powder (Jinx)** and **Violet (Vi)**. 
 
-Set across the gilded rooftops of Piltover and the toxic neon depths of the Zaun Undercity, every interaction—from the scroll-linked polygonal morphing to the kinetic skew-rolling buttons—has been tailored to embody the collision between Hextech precision and Shimmer-fueled madness.
+Set across the gilded rooftops of Piltover and the toxic neon depths of the Zaun Undercity, every interaction, from the scroll-linked polygonal morphing to the kinetic skew-rolling buttons, has been tailored to embody the collision between Hextech precision and Shimmer-fueled madness.
 
 ---
 
@@ -49,7 +49,7 @@ Set across the gilded rooftops of Piltover and the toxic neon depths of the Zaun
 - **Twin-City Narrative Split:** While `index.html` chronicles Jinx and Vi's fracture in Zaun, `hextech.html` transports the audience into Jayce and Viktor's breakthrough in the Piltover Academy.
 - **Hextech Visual Language:** Replaces the violet Zaun palette with electric Hexcore cyan (`#00F0FF`), Piltover Art Deco Gold (`#F5A623`), and cosmic obsidian (`#050811`).
 - **Kinetic Hexcore Bento Grid:** 5 dedicated video cards showcasing the birth of Hextech, runic containment harmonics, wild rune anomalies, kinetic force barriers, and the Piltover Hexgates.
-- **Synchronized Global Navigation:** The navigation bar seamlessly switches between `/index.html` (Sisters) and `/hextech.html` (Hextech) with active indicator pills.
+- **Synchronized Global Navigation:** The navigation bar directly links between `/index.html` (Sisters) and `/hextech.html` (Hextech) with active indicator states.
 
 ### 6. Custom RFC 7233 Media Server
 - Includes a purpose-built Node.js media server featuring native **HTTP 206 Partial Content Range Streaming**.

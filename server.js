@@ -123,7 +123,7 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
   const url = `http://localhost:${PORT}`;
   console.log(`=========================================`);
-  console.log(`🚀 Zentry is live at: ${url}`);
+  console.log(`Zentry is live at: ${url}`);
   console.log(`=========================================`);
 
   // Open default browser on Windows

@@ -16,4 +16,5 @@ tools/*.exe
 tools/frames_*
 tools/*.mp4
 tools/hextech_frames/
+tools/new_frames/
 .vercel

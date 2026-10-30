@@ -6,8 +6,8 @@
   <link rel="icon" type="image/png" href="/img/logo.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ARCANE | Hextech Arcana — Magic Harnessed Through Science</title>
-  <meta name="title" content="ARCANE | Hextech Arcana — Magic Harnessed Through Science">
+  <title>ARCANE: Hextech Arcana | Magic Harnessed Through Science</title>
+  <meta name="title" content="ARCANE: Hextech Arcana | Magic Harnessed Through Science">
   <meta name="description"
     content="Explore Jayce and Viktor's breakthrough in Arcane. The Hexcore, wild runes, and the golden technology of Piltover. Built with GSAP, Tailwind CSS, and Fortiche cinematic footage.">
 
@@ -19,13 +19,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
   <style>
-    /* Hextech Custom Theme Enhancements */
     :root {
       --hex-cyan: #00F0FF;
-      --hex-cyan-glow: rgba(0, 240, 255, 0.45);
+      --hex-cyan-glow: rgba(0, 240, 255, 0.4);
       --hex-gold: #F5A623;
-      --hex-gold-glow: rgba(245, 166, 35, 0.35);
       --hex-dark: #050811;
+      --card-bg: rgba(8, 14, 28, 0.65);
     }
 
     body {
@@ -36,34 +35,27 @@
       padding: 0;
     }
 
-    .border-hex-glow {
-      border: 1px solid rgba(0, 240, 255, 0.25);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.12);
+    /* Pinterest-Style Architectural Bento Cards */
+    .bento-card-arch {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
-    .border-hex-glow:hover {
-      border-color: rgba(0, 240, 255, 0.6);
-      box-shadow: 0 0 35px rgba(0, 240, 255, 0.25);
+    .bento-card-arch:hover {
+      border-color: rgba(0, 240, 255, 0.45);
+      box-shadow: 0 15px 45px rgba(0, 240, 255, 0.15);
     }
 
-    .hex-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background: rgba(0, 240, 255, 0.12);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-      color: #00F0FF;
-    }
-
-    .hex-badge-gold {
-      background: rgba(245, 166, 35, 0.12);
-      border: 1px solid rgba(245, 166, 35, 0.35);
-      color: #F5A623;
+    .bento-scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5, 8, 17, 0.2) 0%, rgba(5, 8, 17, 0.5) 45%, rgba(5, 8, 17, 0.95) 100%);
+      pointer-events: none;
     }
 
     .hero-content-delayed {
@@ -87,7 +79,7 @@
     }
 
     .runic-pulse {
-      animation: pulseRune 3s ease-in-out infinite;
+      animation: pulseRune 3.5s ease-in-out infinite;
     }
 
     @keyframes pulseRune {
@@ -99,12 +91,49 @@
       }
     }
 
-    .nav-active-pill {
-      background: rgba(0, 240, 255, 0.15);
-      border: 1px solid rgba(0, 240, 255, 0.4);
+    /* Minimal Editorial Label (Replaces Pills) */
+    .arch-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #00F0FF;
+    }
+
+    .arch-tag::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: #00F0FF;
+      border-radius: 1px;
+    }
+
+    .arch-tag-gold {
+      color: #F5A623;
+    }
+
+    .arch-tag-gold::before {
+      background: #F5A623;
+    }
+
+    /* Nav Active State (Underline, No Pill) */
+    .nav-link-active {
       color: #00F0FF !important;
-      padding: 4px 12px;
-      border-radius: 9999px;
+      position: relative;
+    }
+
+    .nav-link-active::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #00F0FF;
+      box-shadow: 0 0 8px #00F0FF;
     }
   </style>
 </head>
@@ -119,7 +148,7 @@
         <div class="three-body__dot"></div>
         <div class="three-body__dot"></div>
       </div>
-      <p class="font-general text-xs tracking-widest uppercase text-cyan-400 animate-pulse">Stabilizing Hexcore Matrix...</p>
+      <p class="font-mono text-xs tracking-[0.25em] uppercase text-cyan-400">STABILIZING HEXTECH MATRIX...</p>
     </div>
   </div>
 
@@ -127,34 +156,31 @@
   <div id="navbar" class="fixed inset-x-0 top-4 z-50 h-16 border-none transition-all duration-700 sm:inset-x-6">
     <header class="absolute top-1/2 w-full -translate-y-1/2">
       <nav class="flex size-full items-center justify-between p-4">
-        <!-- Logo & Brand Button -->
-        <div class="flex items-center gap-7">
+        <!-- Logo & Navigation Links -->
+        <div class="flex items-center gap-8">
           <a href="/index.html" class="flex items-center gap-3 group">
             <img src="/img/logo.png" alt="Arcane Logo" class="w-10 transition-transform duration-300 group-hover:scale-110" />
-            <span class="hidden sm:inline font-circular-web text-xs font-semibold tracking-widest text-cyan-400 uppercase">HEXTECH</span>
+            <span class="hidden sm:inline font-mono text-xs font-semibold tracking-[0.25em] text-cyan-400 uppercase">HEXTECH</span>
           </a>
 
-          <a href="/index.html" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-cyan-400 px-6 py-2.5 text-black hidden md:flex items-center justify-center gap-1.5 transition-transform hover:scale-105 active:scale-95">
-            <span class="relative inline-flex overflow-hidden font-general text-xs uppercase font-bold">
-              <div class="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">Return to Sisters</div>
-              <div class="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">Return to Sisters</div>
-            </span>
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
-          </a>
-        </div>
-
-        <!-- Navigation Links & Audio Indicator -->
-        <div class="flex h-full items-center">
-          <div class="hidden md:flex items-center gap-2">
+          <div class="hidden md:flex items-center gap-6">
             <a href="/index.html" class="nav-hover-btn">Sisters</a>
-            <a href="/hextech.html" class="nav-hover-btn nav-active-pill">Hextech</a>
+            <a href="/hextech.html" class="nav-hover-btn nav-link-active">Hextech</a>
             <a href="#about-hextech" class="nav-hover-btn">Genesis</a>
             <a href="#matrix" class="nav-hover-btn">Forge</a>
             <a href="#story" class="nav-hover-btn">Anomaly</a>
           </div>
+        </div>
+
+        <!-- Right Side: Return Link & Audio Player -->
+        <div class="flex h-full items-center gap-4">
+          <a href="/index.html" class="hidden sm:flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-cyan-300 hover:text-white transition-colors">
+            <span>Return to Zaun</span>
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
+          </a>
 
           <!-- Audio Waveform Button -->
-          <button id="audio-btn" class="ml-10 flex items-center space-x-0.5 cursor-pointer p-2" title="Toggle Arcane Sound">
+          <button id="audio-btn" class="ml-4 flex items-center space-x-0.5 cursor-pointer p-2" title="Toggle Arcane Sound">
             <audio id="audio-player" class="hidden" src="/audio/loop.mp3" loop></audio>
             <div class="indicator-line" style="--animation-order: 1"></div>
             <div class="indicator-line" style="--animation-order: 2"></div>
@@ -173,10 +199,10 @@
       <!-- Center Interactive 3D Portal Trigger -->
       <div id="center-portal" class="mask-clip-path absolute-center absolute z-50 size-64 cursor-pointer overflow-hidden rounded-2xl runic-pulse">
         <div class="portal-container size-full">
-          <div id="portal-inner" class="portal-inner size-full flex-center bg-black/40 backdrop-blur-sm border border-cyan-400/40">
+          <div id="portal-inner" class="portal-inner size-full flex-center bg-black/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl">
             <div class="origin-center scale-75 opacity-70 transition-all duration-500 ease-out hover:scale-100 hover:opacity-100 size-full flex-center flex-col p-4 text-center">
               <img src="/img/hextech-crystal.jpg" alt="Hextech Gemstone" class="size-44 object-cover rounded-xl shadow-2xl mb-2 pointer-events-none" />
-              <span class="hex-badge">HEXCORE V.1</span>
+              <span class="font-mono text-[10px] tracking-[0.25em] text-cyan-300 uppercase">HEXCORE MATRIX</span>
             </div>
           </div>
         </div>
@@ -192,26 +218,20 @@
 
       <!-- Director-Paced Hero Content (Fades in smoothly after 4 seconds) -->
       <div class="absolute left-0 top-0 z-40 size-full pointer-events-none">
-        <div id="hero-content" class="hero-content-delayed mt-24 px-5 sm:px-10 pointer-events-auto">
-          <div class="inline-flex items-center gap-2 mb-3">
-            <span class="hex-badge">PILTOVER ACADEMY OF SCIENCE</span>
-            <span class="hex-badge hex-badge-gold">DISCOVERY #772</span>
-          </div>
+        <div id="hero-content" class="hero-content-delayed mt-28 px-6 sm:px-12 pointer-events-auto max-w-3xl">
+          <p class="font-mono text-xs uppercase tracking-[0.3em] text-cyan-400 mb-2">PILTOVER ACADEMY // ARCHIVE 772</p>
           
-          <h1 class="special-font hero-heading text-white max-w-2xl drop-shadow-[0_5px_15px_rgba(0,240,255,0.4)]">
+          <h1 class="special-font hero-heading text-white drop-shadow-[0_5px_20px_rgba(0,240,255,0.4)]">
             H<b>E</b>XTECH
           </h1>
           
-          <p class="mb-6 max-w-md font-robert-regular text-cyan-100/90 text-sm md:text-base leading-relaxed">
+          <p class="mb-6 max-w-md font-circular-web text-cyan-100/90 text-sm md:text-base leading-relaxed">
             Magic harnessed through mechanical precision. Jayce Talis and Viktor's breakthrough that breached the boundary between raw arcana and physical law.
           </p>
 
-          <a href="#about-hextech" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-cyan-400 px-7 py-3 text-black inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,240,255,0.4)]">
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
-            <span class="relative inline-flex overflow-hidden font-general text-xs uppercase font-bold">
-              <div class="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">Witness The Arcana</div>
-              <div class="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">Witness The Arcana</div>
-            </span>
+          <a href="#about-hextech" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-md border border-cyan-400 bg-cyan-400/10 backdrop-blur-sm px-6 py-3 text-cyan-300 inline-flex items-center justify-center gap-2 transition-all hover:bg-cyan-400 hover:text-black">
+            <span class="font-mono text-xs uppercase font-bold tracking-widest">Witness The Arcana</span>
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
           </a>
         </div>
       </div>
@@ -224,12 +244,12 @@
   </section>
 
   <!-- SECTION 2: ABOUT HEXTECH ("The Catalyst of Evolution" with Pinned ScrollTrigger Mask) -->
-  <section id="about-hextech" class="min-h-screen w-screen relative bg-[#050811] py-20">
-    <div class="relative mb-12 flex flex-col items-center gap-5 px-4 text-center">
-      <p class="font-general text-xs uppercase tracking-widest text-cyan-400">The Genesis of Modern Magic</p>
+  <section id="about-hextech" class="min-h-screen w-screen relative bg-[#050811] py-24">
+    <div class="relative mb-14 flex flex-col items-center gap-4 px-4 text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">THE GENESIS OF MODERN MAGIC</p>
       
       <!-- Staggered Animated Title -->
-      <div class="animated-title mt-5 !text-white text-center">
+      <div class="animated-title mt-4 !text-white text-center">
         <div class="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3">
           <span class="animated-word special-font text-5xl md:text-7xl font-black uppercase">Harm<b>o</b>nizing</span>
           <span class="animated-word special-font text-5xl md:text-7xl font-black uppercase">The</span>
@@ -243,10 +263,10 @@
       </div>
 
       <div class="about-subtext max-w-2xl mt-4">
-        <p class="text-white text-base md:text-lg font-circular-web">
-          Before Jayce and Viktor stabilized the crystal, magic in Runeterra was a wild, untamed tempest known only to ancient mages.
+        <p class="text-white text-base md:text-lg font-circular-web leading-relaxed">
+          Before Jayce and Viktor stabilized the crystal, magic in Runeterra was an unpredictable tempest known only to ancient mages.
         </p>
-        <p class="text-cyan-200/60 text-sm md:text-base mt-2">
+        <p class="text-cyan-200/60 text-sm md:text-base mt-2 font-circular-web">
           Through the containment matrix, raw runic potential was bound to brass and clockwork, birthing an industrial revolution that elevated the City of Progress above the clouds.
         </p>
       </div>
@@ -257,145 +277,145 @@
       <div class="mask-clip-path about-image relative size-full overflow-hidden shadow-2xl">
         <img src="/img/hextech-anomaly.jpg" alt="Hextech Lab" class="absolute left-0 top-0 size-full object-cover" />
         <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-transparent to-[#050811]/60"></div>
-        <div class="absolute bottom-16 left-8 md:left-20 z-20 max-w-lg p-6 rounded-2xl bg-black/60 backdrop-blur-md border border-cyan-400/30">
-          <span class="hex-badge mb-2">LABORATORY EXPERIMENT #04</span>
+        <div class="absolute bottom-16 left-8 md:left-20 z-20 max-w-lg p-8 rounded-xl bg-black/75 backdrop-blur-md border border-cyan-400/25">
+          <p class="arch-tag mb-2">EXPERIMENT ARCHIVE 04</p>
           <h3 class="special-font text-2xl md:text-4xl text-white font-bold">RESONANCE CONTAINED</h3>
-          <p class="text-xs md:text-sm text-cyan-100/80 mt-2 font-robert-regular">
-            "When you're going to change the world, don't ask for permission." Jayce and Viktor's forbidden research defied Heimerdinger's council, unleashing the Golden Age.
+          <p class="text-xs md:text-sm text-cyan-100/80 mt-2 font-circular-web leading-relaxed">
+            Jayce and Viktor's forbidden research defied Heimerdinger's council, locking the arcane frequencies into physical equilibrium.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTION 3: THE HEXTECH MATRIX (BENTO GRID WITH FLASHLIGHT AND 3D TILT) -->
-  <section id="matrix" class="bg-[#050811] pb-52 pt-16">
-    <div class="container mx-auto px-4 md:px-10">
+  <!-- SECTION 3: THE HEXTECH MATRIX (PINTEREST ARCHITECTURAL BENTO GRID) -->
+  <section id="matrix" class="bg-[#050811] pb-48 pt-20">
+    <div class="container mx-auto px-4 md:px-12">
       
       <!-- Section Header -->
-      <div class="px-5 py-20 text-left">
-        <p class="font-circular-web text-sm tracking-widest text-cyan-400 uppercase">Applied Runic Engineering</p>
-        <h2 class="special-font text-4xl md:text-6xl text-white mt-2">THE H<b>E</b>XTECH F<b>O</b>RGE</h2>
-        <p class="max-w-xl font-circular-web text-base text-cyan-100/60 mt-3">
-          Explore the revolutionary artifacts and conduits engineered from the fusion of runes and mechanical metallurgy.
+      <div class="px-2 py-16 text-left max-w-3xl">
+        <p class="font-mono text-xs tracking-[0.25em] text-cyan-400 uppercase">CATALOG // RUNIC ENGINEERING</p>
+        <h2 class="special-font text-4xl md:text-6xl text-white mt-3">THE H<b>E</b>XTECH F<b>O</b>RGE</h2>
+        <p class="font-circular-web text-base text-cyan-100/70 mt-3 leading-relaxed">
+          From massive skyward transit conduits to personal kinetic ordnance, explore the authentic artifacts forged from raw Hextech gemstones.
         </p>
       </div>
 
-      <!-- Hero Bento Card (Full Width) -->
-      <div class="bento-tilt relative mb-7 h-96 w-full overflow-hidden rounded-2xl md:h-[65vh] border-hex-glow">
-        <div class="relative size-full">
-          <video src="/videos/hextech-hero.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
-          <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-[#050811]/30 to-transparent"></div>
-          
-          <div class="relative z-10 flex size-full flex-col justify-between p-6 md:p-10 text-white">
-            <div>
-              <div class="flex items-center gap-2 mb-3">
-                <span class="hex-badge">ARTIFACT PRIME</span>
-                <span class="hex-badge hex-badge-gold">AUTONOMOUS</span>
-              </div>
-              <h1 class="bento-title special-font text-4xl md:text-6xl text-white">THE H<b>E</b>XCORE</h1>
-              <p class="mt-3 max-w-md text-sm md:text-base text-cyan-100/80 leading-relaxed font-robert-regular">
-                Viktor's autonomous, self-learning arcane matrix. An organic crystal core that mutates and adapts to biological matter, evolving past mechanical limits.
-              </p>
-            </div>
+      <!-- Hero Bento Card (The Hexcore Genesis - Full Width 60vh) -->
+      <div class="bento-card-arch bento-tilt relative mb-8 w-full min-h-[460px] md:h-[60vh]">
+        <video src="/videos/hextech-hero.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
+        <div class="bento-scrim"></div>
+        
+        <div class="relative z-10 flex size-full flex-col justify-between p-8 md:p-12 text-white">
+          <div class="flex items-center justify-between">
+            <span class="arch-tag">01 // ARTIFACT PRIME</span>
+            <span class="font-mono text-xs tracking-widest text-cyan-300/70 uppercase">AUTONOMOUS</span>
+          </div>
 
-            <!-- Spotlight Flashlight Button -->
-            <div class="flashlight-btn relative flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-cyan-950/80 border border-cyan-400/50 px-6 py-2.5 text-xs uppercase text-cyan-300 font-bold transition-transform hover:scale-105">
-              <div class="spotlight pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"></div>
-              <svg class="w-3.5 h-3.5 fill-cyan-400" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
-              <span>CORE EVOLVING</span>
+          <div class="max-w-2xl">
+            <h1 class="bento-title special-font text-4xl md:text-6xl text-white">THE H<b>E</b>XCORE</h1>
+            <p class="mt-3 text-sm md:text-base text-cyan-100/80 font-circular-web leading-relaxed">
+              Viktor's autonomous, self-learning arcane matrix. An organic crystal core that mutates and adapts to biological matter, evolving past mechanical limits.
+            </p>
+            <div class="mt-6 flex items-center gap-6 font-mono text-xs tracking-wider text-cyan-400/90">
+              <span>FREQUENCY: 428 THz</span>
+              <span>•</span>
+              <span>STABILITY: ACTIVE</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Bento Grid (3 Rows, 2 Columns) -->
-      <div class="grid h-[140vh] w-full grid-cols-1 md:grid-cols-2 grid-rows-3 gap-7">
+      <!-- Asymmetrical 12-Column Bento Grid (Row 1: 7-5 Split | Row 2: 5-7 Split) -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 w-full">
         
-        <!-- Card 1: Stabilization (Tall Row Span 2) -->
-        <div class="bento-tilt bento-tilt_1 row-span-1 md:col-span-1 md:row-span-2 overflow-hidden rounded-2xl border-hex-glow">
-          <div class="relative size-full">
-            <video src="/videos/hextech-card-1.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-[#050811]/40 to-transparent"></div>
-            
-            <div class="relative z-10 flex size-full flex-col justify-between p-6 md:p-8 text-white">
-              <div>
-                <span class="hex-badge mb-2">ORIGIN</span>
-                <h1 class="bento-title special-font text-3xl md:text-5xl">STAB<b>I</b>LIZATION</h1>
-                <p class="mt-3 max-w-xs text-xs md:text-sm text-cyan-100/80 font-robert-regular">
-                  The moment harmonic resonance locked the crystal in place, ending decades of uncontrollable explosions and proving Heimerdinger wrong.
-                </p>
-              </div>
+        <!-- Card 1 (7 Cols): The Hexgates Transit -->
+        <div class="bento-card-arch bento-tilt md:col-span-7 min-h-[440px] md:h-[480px]">
+          <video src="/videos/hextech-card-1.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
+          <div class="bento-scrim"></div>
+          
+          <div class="relative z-10 flex size-full flex-col justify-between p-8 md:p-10 text-white">
+            <div class="flex items-center justify-between">
+              <span class="arch-tag">02 // SKYWARD TRANSIT</span>
+              <span class="font-mono text-xs tracking-widest text-cyan-300/70 uppercase">PILTOVER HARBOR</span>
+            </div>
 
-              <div class="flashlight-btn relative flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-cyan-950/80 border border-cyan-400/40 px-5 py-2 text-xs uppercase text-cyan-300">
-                <div class="spotlight pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"></div>
-                <span>HARMONIC LOCK</span>
+            <div>
+              <h1 class="bento-title special-font text-3xl md:text-5xl">PILTOVER H<b>E</b>XGATES</h1>
+              <p class="mt-3 max-w-md text-xs md:text-sm text-cyan-100/80 font-circular-web leading-relaxed">
+                Massive pneumatic arc towers high above the harbor. Connecting Runeterra through instantaneous celestial hyperspace gates.
+              </p>
+              <div class="mt-4 font-mono text-xs tracking-wider text-cyan-400">
+                [ GATE CONDUIT ACTIVE ]
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 2: Wild Rune (Volatile Anomaly) -->
-        <div class="bento-tilt bento-tilt_1 overflow-hidden rounded-2xl border-hex-glow">
-          <div class="relative size-full">
-            <video src="/videos/hextech-card-2.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-[#050811]/40 to-transparent"></div>
-            
-            <div class="relative z-10 flex size-full flex-col justify-between p-6 text-white">
-              <div>
-                <span class="hex-badge hex-badge-gold mb-2">ANOMALY</span>
-                <h1 class="bento-title special-font text-3xl md:text-4xl text-amber-300">WILD R<b>U</b>NE</h1>
-                <p class="mt-2 max-w-xs text-xs md:text-sm text-cyan-100/80 font-robert-regular">
-                  Volatile runes that mutate without containment rings. The dark herald of Arcane Season 2.
-                </p>
-              </div>
-              <div class="flashlight-btn relative flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-amber-950/80 border border-amber-400/40 px-4 py-1.5 text-xs uppercase text-amber-300">
-                <div class="spotlight pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"></div>
-                <span>VOLATILE SPEC</span>
+        <!-- Card 2 (5 Cols): Atlas Gauntlets -->
+        <div class="bento-card-arch bento-tilt md:col-span-5 min-h-[440px] md:h-[480px]">
+          <video src="/videos/hextech-card-2.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
+          <div class="bento-scrim"></div>
+          
+          <div class="relative z-10 flex size-full flex-col justify-between p-8 md:p-10 text-white">
+            <div class="flex items-center justify-between">
+              <span class="arch-tag">03 // KINETIC ORDNANCE</span>
+              <span class="font-mono text-xs tracking-widest text-cyan-300/70 uppercase">MINING SPEC</span>
+            </div>
+
+            <div>
+              <h1 class="bento-title special-font text-3xl md:text-4xl text-cyan-200">ATL<b>A</b>S GAUNTLETS</h1>
+              <p class="mt-2 text-xs md:text-sm text-cyan-100/80 font-circular-web leading-relaxed">
+                Pneumatic shockwave amplifiers powered by raw Hextech gemstones, delivering shattering kinetic force.
+              </p>
+              <div class="mt-4 font-mono text-xs tracking-wider text-cyan-400">
+                [ TORQUE CHARGED ]
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 3: Kinetic Barrier & Gauntlets -->
-        <div class="bento-tilt bento-tilt_1 overflow-hidden rounded-2xl border-hex-glow">
-          <div class="relative size-full">
-            <video src="/videos/hextech-card-3.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050811] via-[#050811]/40 to-transparent"></div>
-            
-            <div class="relative z-10 flex size-full flex-col justify-between p-6 text-white">
-              <div>
-                <span class="hex-badge mb-2">ORDNANCE</span>
-                <h1 class="bento-title special-font text-3xl md:text-4xl">KINET<b>I</b>C MATRIX</h1>
-                <p class="mt-2 max-w-xs text-xs md:text-sm text-cyan-100/80 font-robert-regular">
-                  Gravimetric levitation fields and kinetic force barriers deployed for extreme pressure environments.
-                </p>
-              </div>
-              <div class="flashlight-btn relative flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-cyan-950/80 border border-cyan-400/40 px-4 py-1.5 text-xs uppercase text-cyan-300">
-                <div class="spotlight pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"></div>
-                <span>AEGIS SHIELD</span>
+        <!-- Card 3 (5 Cols): Mercury Forge -->
+        <div class="bento-card-arch bento-tilt md:col-span-5 min-h-[440px] md:h-[480px]">
+          <video src="/videos/hextech-card-3.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
+          <div class="bento-scrim"></div>
+          
+          <div class="relative z-10 flex size-full flex-col justify-between p-8 md:p-10 text-white">
+            <div class="flex items-center justify-between">
+              <span class="arch-tag">04 // THE FOUNDRY</span>
+              <span class="font-mono text-xs tracking-widest text-cyan-300/70 uppercase">ACADEMY WORKSHOP</span>
+            </div>
+
+            <div>
+              <h1 class="bento-title special-font text-3xl md:text-4xl">MERC<b>U</b>RY FORGE</h1>
+              <p class="mt-2 text-xs md:text-sm text-cyan-100/80 font-circular-web leading-relaxed">
+                Jayce forging the transforming Mercury Cannon and hammer, fusing molten metallurgic craft with the gemstone core.
+              </p>
+              <div class="mt-4 font-mono text-xs tracking-wider text-cyan-400">
+                [ CORE LOCK 100% ]
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Card 4: Piltover Transit Conduits -->
-        <div class="bento-tilt bento-tilt_2 overflow-hidden rounded-2xl border-hex-glow col-span-1 md:col-span-2">
-          <div class="relative size-full">
-            <video src="/videos/hextech-card-4.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
-            <div class="absolute inset-0 bg-gradient-to-r from-[#050811] via-[#050811]/70 to-transparent"></div>
-            
-            <div class="relative z-10 flex size-full flex-col justify-between p-6 md:p-8 text-white">
-              <div>
-                <span class="hex-badge mb-2">INFRASTRUCTURE</span>
-                <h1 class="bento-title special-font text-3xl md:text-5xl">PILTOVER H<b>E</b>XGATES</h1>
-                <p class="mt-2 max-w-md text-xs md:text-sm text-cyan-100/80 font-robert-regular">
-                  Pneumatic celestial trade conduits connecting the continents of Valoran and Shurima through safe teleportation.
-                </p>
-              </div>
-              <div class="flashlight-btn relative flex w-fit cursor-pointer items-center gap-2 overflow-hidden rounded-full bg-cyan-950/80 border border-cyan-400/40 px-5 py-2 text-xs uppercase text-cyan-300">
-                <div class="spotlight pointer-events-none absolute -inset-px opacity-0 transition-opacity duration-300"></div>
-                <span>AIRSHIP LANES ACTIVE</span>
+        <!-- Card 4 (7 Cols): Wild Rune Mutation -->
+        <div class="bento-card-arch bento-tilt md:col-span-7 min-h-[440px] md:h-[480px]">
+          <video src="/videos/hextech-card-4.mp4" loop muted autoplay playsinline class="absolute left-0 top-0 size-full object-cover object-center"></video>
+          <div class="bento-scrim"></div>
+          
+          <div class="relative z-10 flex size-full flex-col justify-between p-8 md:p-10 text-white">
+            <div class="flex items-center justify-between">
+              <span class="arch-tag arch-tag-gold">05 // THE ANOMALY</span>
+              <span class="font-mono text-xs tracking-widest text-amber-300/70 uppercase">CLASS OMEGA</span>
+            </div>
+
+            <div>
+              <h1 class="bento-title special-font text-3xl md:text-5xl text-amber-200">WILD R<b>U</b>NE MUTATION</h1>
+              <p class="mt-3 max-w-md text-xs md:text-sm text-cyan-100/80 font-circular-web leading-relaxed">
+                Raw runic power breaking free of mechanical containment rings. The dangerous catalyst that reshapes Piltover and Zaun.
+              </p>
+              <div class="mt-4 font-mono text-xs tracking-wider text-amber-400">
+                [ VOLATILE ANOMALY ]
               </div>
             </div>
           </div>
@@ -406,13 +426,13 @@
   </section>
 
   <!-- SECTION 4: THE ANOMALY & THE FISSURE (WITH LIQUID SVG FILTER & 3D TILT) -->
-  <section id="story" class="min-h-dvh w-screen bg-[#03060c] text-cyan-50 relative py-20">
+  <section id="story" class="min-h-dvh w-screen bg-[#03060c] text-cyan-50 relative py-24">
     <div class="flex size-full flex-col items-center py-10 pb-24">
-      <p class="font-general text-xs uppercase tracking-widest text-cyan-400">The Transcendence Paradox</p>
+      <p class="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400">THE TRANSCENDENCE PARADOX</p>
       
       <!-- Liquid Filter Animated Title -->
       <div class="relative size-full text-center">
-        <div class="animated-title mt-5 pointer-events-none mix-blend-difference relative z-10">
+        <div class="animated-title mt-6 pointer-events-none mix-blend-difference relative z-10">
           <div class="flex-center max-w-full flex-wrap gap-2 px-10 md:gap-3">
             <span class="animated-word special-font text-5xl md:text-7xl font-black uppercase">The</span>
             <span class="animated-word special-font text-5xl md:text-7xl font-black uppercase text-cyan-400">P<b>o</b>wer</span>
@@ -431,7 +451,7 @@
         <div class="story-img-container mt-12">
           <div class="story-img-mask">
             <div class="story-img-content">
-              <img id="story-image" src="/img/hextech-anomaly.jpg" alt="The Hextech Anomaly" class="object-contain cursor-pointer transition-transform duration-300 hover:scale-105 rounded-3xl" />
+              <img id="story-image" src="/img/hextech-anomaly.jpg" alt="The Hextech Anomaly" class="object-contain cursor-pointer transition-transform duration-300 hover:scale-105 rounded-2xl" />
             </div>
           </div>
 
@@ -450,15 +470,13 @@
 
       <!-- Narrative Lore Card -->
       <div class="relative z-20 mt-[-100px] flex w-full justify-center md:me-44 md:justify-end px-6">
-        <div class="flex h-full w-fit max-w-md flex-col items-center md:items-start p-6 rounded-2xl bg-black/80 backdrop-blur-md border border-cyan-400/30">
+        <div class="flex h-full w-fit max-w-md flex-col items-center md:items-start p-8 rounded-xl bg-black/85 backdrop-blur-md border border-cyan-400/25">
           <p class="font-circular-web text-cyan-100/90 text-sm md:text-base leading-relaxed text-center md:text-start">
-            Viktor saw beyond Piltover's political vanity. To him, the Hexcore was a beacon to cure humanity's physical frailty. But as magic intertwined with flesh, the line between evolution and monstrosity vanished.
+            Viktor saw beyond Piltover's political vanity. To him, the Hexcore was a beacon to cure physical frailty. But as magic intertwined with flesh, the line between evolution and monstrosity vanished.
           </p>
-          <a href="/index.html" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-cyan-400 px-7 py-3 text-black inline-flex items-center justify-center gap-2 mt-5 transition-transform hover:scale-105">
-            <span class="relative inline-flex overflow-hidden font-general text-xs uppercase font-bold">
-              <div class="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">Return to Zaun & Jinx</div>
-              <div class="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">Return to Zaun & Jinx</div>
-            </span>
+          <a href="/index.html" class="mt-6 font-mono text-xs uppercase font-bold tracking-widest text-cyan-400 hover:text-white transition-colors flex items-center gap-2">
+            <span>Return to Zaun and Jinx</span>
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M10.368 19.102c.349 1.049 1.011 1.086 1.478.086l5.309-11.375c.467-1.002.034-1.434-.967-.967l-11.376 5.308c-1.001.467-.963 1.129.085 1.479l4.103 1.367 1.368 4.102z"></path></svg>
           </a>
         </div>
       </div>
@@ -467,30 +485,24 @@
   </section>
 
   <!-- SECTION 5: CALL TO ACTION (PILTOVER COUNCIL BANNER) -->
-  <section class="my-20 min-h-96 w-screen px-4 md:px-10">
+  <section class="my-20 min-h-96 w-screen px-4 md:px-12">
     <div class="relative rounded-2xl bg-gradient-to-b from-[#091024] to-[#050811] py-24 text-cyan-50 sm:overflow-hidden border border-cyan-400/20 shadow-2xl">
       <div class="flex flex-col items-center text-center px-4">
-        <span class="hex-badge mb-4">THE COUNCIL OF PILTOVER</span>
+        <p class="font-mono text-xs uppercase tracking-[0.25em] text-cyan-400 mb-3">THE COUNCIL OF PILTOVER</p>
         <h2 class="special-font !text-4xl md:!text-6xl text-white font-black leading-tight max-w-2xl">
           ST<b>A</b>ND WITH PILTOVER <br /> OR FALL WITH Z<b>A</b>UN.
         </h2>
-        <p class="mt-4 max-w-md text-sm text-cyan-200/70 font-circular-web">
+        <p class="mt-4 max-w-md text-sm text-cyan-200/70 font-circular-web leading-relaxed">
           The balance of power has tipped. Witness both sides of the fissure.
         </p>
         
         <div class="flex flex-wrap items-center justify-center gap-4 mt-8">
-          <a href="/index.html" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-cyan-400 px-8 py-3.5 text-black inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(0,240,255,0.4)]">
-            <span class="relative inline-flex overflow-hidden font-general text-xs uppercase font-bold">
-              <div class="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">Explore Sisters Page</div>
-              <div class="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">Explore Sisters Page</div>
-            </span>
+          <a href="/index.html" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-md bg-cyan-400 px-8 py-3.5 text-black inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 active:scale-95 shadow-[0_0_25px_rgba(0,240,255,0.4)]">
+            <span class="font-mono text-xs uppercase font-bold tracking-widest">Explore Sisters Page</span>
           </a>
 
-          <a href="#video-frame" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-black/60 border border-cyan-400/40 px-8 py-3.5 text-cyan-300 inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-black/90">
-            <span class="relative inline-flex overflow-hidden font-general text-xs uppercase font-bold">
-              <div class="translate-y-0 skew-y-0 transition duration-500 group-hover:translate-y-[-160%] group-hover:skew-y-12">Replay Core Ignition</div>
-              <div class="absolute translate-y-[164%] skew-y-12 transition duration-500 group-hover:translate-y-0 group-hover:skew-y-0">Replay Core Ignition</div>
-            </span>
+          <a href="#video-frame" class="group relative z-10 w-fit cursor-pointer overflow-hidden rounded-md bg-black/60 border border-cyan-400/40 px-8 py-3.5 text-cyan-300 inline-flex items-center justify-center gap-2 transition-transform hover:scale-105 hover:bg-black/90">
+            <span class="font-mono text-xs uppercase font-bold tracking-widest">Replay Core Ignition</span>
           </a>
         </div>
       </div>
@@ -503,7 +515,7 @@
       <div class="flex items-center gap-3">
         <img src="/img/logo.png" alt="Logo" class="w-7 opacity-80" />
         <p class="text-center text-xs font-light md:text-left text-cyan-200/70">
-          © Riot Games & Fortiche. Arcane Hextech Showcase for Mr Q.
+          (c) Riot Games and Fortiche. Arcane Hextech Showcase for Mr Q.
         </p>
       </div>
 
@@ -526,7 +538,6 @@
           setTimeout(() => loader.remove(), 700);
         }, 300);
       });
-      // Fallback loader removal after 2 seconds
       setTimeout(() => {
         if (loader && !loader.classList.contains("opacity-0")) {
           loader.classList.add("opacity-0", "pointer-events-none");
@@ -575,7 +586,6 @@
           portalInner.style.transform = "perspective(600px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
         });
 
-        // Click to toggle pulse / sound
         centerPortal.addEventListener("click", () => {
           gsap.timeline()
             .to(centerPortal, { scale: 0.92, duration: 0.15, ease: "power2.in" })
@@ -587,7 +597,7 @@
       if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
         gsap.registerPlugin(ScrollTrigger);
 
-        // A. Hero Video Frame Polygon Scroll Morph (Matching Landing Page Zentry Style!)
+        // A. Hero Video Frame Polygon Scroll Morph
         gsap.set("#video-frame", {
           clipPath: "polygon(14% 0, 72% 0, 88% 90%, 0 95%)",
           borderRadius: "0% 0% 40% 10%"
@@ -651,52 +661,31 @@
             navbar.classList.remove("floating-nav");
             gsap.to(navbar, { y: 0, opacity: 1, duration: 0.25 });
           } else if (currentScroll > lastScroll) {
-            // Scrolling down
             navbar.classList.add("floating-nav");
             gsap.to(navbar, { y: -90, opacity: 0, duration: 0.25 });
           } else {
-            // Scrolling up
             navbar.classList.add("floating-nav");
             gsap.to(navbar, { y: 0, opacity: 1, duration: 0.25 });
           }
           lastScroll = currentScroll;
         }, { passive: true });
-
       }
 
-      // 6. Bento Tilt & Flashlight Spotlight Cursor Tracking
+      // 6. Bento Tilt 3D Perspective Tracking (Subtle, smooth)
       document.querySelectorAll(".bento-tilt").forEach(card => {
         card.addEventListener("mousemove", (e) => {
           const rect = card.getBoundingClientRect();
           const x = (e.clientX - rect.left) / rect.width;
           const y = (e.clientY - rect.top) / rect.height;
-          const rotX = (y - 0.5) * -8;
-          const rotY = (x - 0.5) * 8;
-          card.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(0.985, 0.985, 0.985)`;
+          const rotX = (y - 0.5) * -5;
+          const rotY = (x - 0.5) * 5;
+          card.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-2px)`;
           card.style.transition = "transform 0.1s ease-out";
         });
 
         card.addEventListener("mouseleave", () => {
-          card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+          card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)";
           card.style.transition = "transform 0.4s ease-out";
-        });
-      });
-
-      // Flashlight Spotlight inside buttons
-      document.querySelectorAll(".flashlight-btn").forEach(btn => {
-        const spot = btn.querySelector(".spotlight");
-        if (!spot) return;
-
-        btn.addEventListener("mousemove", (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          spot.style.opacity = "1";
-          spot.style.background = `radial-gradient(90px circle at ${x}px ${y}px, rgba(0, 240, 255, 0.4), rgba(0, 0, 0, 0.2))`;
-        });
-
-        btn.addEventListener("mouseleave", () => {
-          spot.style.opacity = "0";
         });
       });
 
@@ -718,7 +707,6 @@
           gsap.to(storyImg, { duration: 0.3, rotateX: 0, rotateY: 0, ease: "power1.inOut" });
         });
       }
-
     });
   </script>
 </body>
